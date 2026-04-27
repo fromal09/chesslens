@@ -109,10 +109,20 @@ export function splitMultiGamePGN(pgn: string): string[] {
   return chunks.map(c => c.trim()).filter(c => c.startsWith('['));
 }
 
+export function stripAnnotations(pgn: string): string {
+  return pgn
+    .replace(/\{[^}]*\}/g, '')      // remove all { } comments
+    .replace(/\([^)]*\)/g, '')       // remove ( ) variations (simple)
+    .replace(/\$\d+/g, '')           // remove NAG symbols like $1
+    .replace(/\s+/g, ' ')            // collapse whitespace
+    .trim();
+}
+
 export function parseSingleGame(pgn: string): ParsedGame | null {
   try {
     const chess = new Chess();
-    chess.loadPgn(pgn.trim());
+    const stripped = stripAnnotations(pgn);
+    chess.loadPgn(stripped);
 
     const headers = chess.header() as Record<string, string>;
 
