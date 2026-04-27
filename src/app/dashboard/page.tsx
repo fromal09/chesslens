@@ -14,7 +14,7 @@ export default async function DashboardPage() {
     .from('profiles')
     .select('username, chess_username')
     .eq('id', user.id)
-    .single();
+    .single() as { data: { username: string | null; chess_username: string | null } | null };
 
   // Fetch recent games with stats
   const { data: recentGames } = await supabase
