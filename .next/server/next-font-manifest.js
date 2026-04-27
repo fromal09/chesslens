@@ -1,1 +1,0 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/adam.fromal/Downloads/chesslens/src/app/layout\":[\"static/media/d3ebbfd689654d3a-s.p.woff2\",\"static/media/98e207f02528a563-s.p.woff2\",\"static/media/eaead17c7dbfcd5d-s.p.woff2\",\"static/media/97ac91773d3121b2-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"
