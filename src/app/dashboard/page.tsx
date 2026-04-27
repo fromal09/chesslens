@@ -26,7 +26,14 @@ export default async function DashboardPage() {
     `)
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
-    .limit(20);
+    .limit(20) as { data: Array<{
+      id: string; white: string | null; black: string | null;
+      result: string | null; color_played: string | null; date: string | null;
+      eco: string | null; opening_name: string | null;
+      white_elo: number | null; black_elo: number | null;
+      analysis_status: string | null; total_plies: number | null;
+      game_stats: Array<{ accuracy: number | null; blunders: number | null; mistakes: number | null; inaccuracies: number | null }>;
+    }> | null };
 
   // Aggregate stats for header cards
   const { data: allStats } = await supabase
