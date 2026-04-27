@@ -32,7 +32,7 @@ export default async function DashboardPage() {
   const { data: allStats } = await supabase
     .from('game_stats')
     .select('accuracy, blunders, mistakes, inaccuracies')
-    .eq('user_id', user.id);
+    .eq('user_id', user.id) as { data: Array<{ accuracy: number | null; blunders: number | null; mistakes: number | null; inaccuracies: number | null }> | null };
 
   const totals = (allStats ?? []).reduce(
     (acc, s) => ({
