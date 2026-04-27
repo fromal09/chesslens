@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ----------------------------------------------------------------
+   Design Tokens
+   Dark, editorial chess aesthetic — amber gold on near-black.
+   ---------------------------------------------------------------- */
+:root {
+  /* Surfaces */
+  --background:       #0c0c0e;
+  --surface:          #111113;
+  --surface-2:        #18181c;
+  --surface-3:        #202026;
+  --border:           #2a2a30;
+  --border-subtle:    #1e1e22;
+
+  /* Text */
+  --text-primary:     #e8e2d6;
+  --text-secondary:   #9a9490;
+  --text-muted:       #5a5655;
+
+  /* Accent — chess amber gold */
+  --accent:           #c9a050;
+  --accent-dim:       #8a6c30;
+  --accent-glow:      rgba(201, 160, 80, 0.15);
+
+  /* Move classifications */
+  --brilliant:        #a78bfa;
+  --excellent:        #34d399;
+  --good:             #60a5fa;
+  --ok:               #6b7280;
+  --inaccuracy:       #fbbf24;
+  --mistake:          #f97316;
+  --blunder:          #ef4444;
+
+  /* Result colors */
+  --win:              #34d399;
+  --loss:             #ef4444;
+  --draw:             #6b7280;
+
+  /* Fonts */
+  --font-display: var(--font-display, 'Georgia', serif);
+  --font-body:    var(--font-body, 'Georgia', serif);
+  --font-mono:    var(--font-mono, 'Courier New', monospace);
+}
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-body), Georgia, serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ----------------------------------------------------------------
+   Typography
+   ---------------------------------------------------------------- */
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), 'Courier New', monospace;
+}
+
+/* ----------------------------------------------------------------
+   Scrollbar
+   ---------------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-dim);
+}
+
+/* ----------------------------------------------------------------
+   Utilities
+   ---------------------------------------------------------------- */
+
+.chess-grid {
+  background-image:
+    linear-gradient(var(--border-subtle) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent), #e8c87a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Classification badges */
+.badge-brilliant  { background: rgba(167,139,250,0.15); color: var(--brilliant); border-color: rgba(167,139,250,0.3); }
+.badge-excellent  { background: rgba(52,211,153,0.12);  color: var(--excellent); border-color: rgba(52,211,153,0.25); }
+.badge-good       { background: rgba(96,165,250,0.12);  color: var(--good);      border-color: rgba(96,165,250,0.25); }
+.badge-ok         { background: rgba(107,114,128,0.12); color: var(--ok);        border-color: rgba(107,114,128,0.25); }
+.badge-inaccuracy { background: rgba(251,191,36,0.12);  color: var(--inaccuracy);border-color: rgba(251,191,36,0.25); }
+.badge-mistake    { background: rgba(249,115,22,0.12);  color: var(--mistake);   border-color: rgba(249,115,22,0.25); }
+.badge-blunder    { background: rgba(239,68,68,0.12);   color: var(--blunder);   border-color: rgba(239,68,68,0.25); }
+
+/* Fade in animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.4s ease-out both;
+}
+
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+.animate-delay-400 { animation-delay: 0.4s; }
+
+/* Progress bar pulse */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg,
+    var(--accent-dim) 0%,
+    var(--accent) 50%,
+    var(--accent-dim) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 1.5s linear infinite;
+}
