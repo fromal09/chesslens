@@ -56,6 +56,7 @@ export default function HomePage() {
   const supabase = createClient();
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user) router.push('/dashboard');
     });
